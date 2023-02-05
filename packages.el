@@ -3,6 +3,10 @@
 (package! focus) ;; highlighs paragraph or sentence when typing
 (package! format-all) ;; format code file
 (package! theme-changer) ;; mange day and night theme
+(package! citar-org-roam) ;; enhance citar 
+(package! dirvish) ;; replace dirad
+(package! org-modern) ;; modern org mode
+(package! org-roam-bibtex) ;; work with org-roam
 
 
 

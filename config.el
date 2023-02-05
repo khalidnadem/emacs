@@ -22,6 +22,20 @@
 (require 'theme-changer)
 (change-theme 'doom-acario-light 'doom-dracula)
 
+;; enable word-wrap (almost) everywhere
+(+global-word-wrap-mode +1)
+
+;; pretify symbols
+(global-prettify-symbols-mode +1)
+
+(setq confirm-kill-emacs nil) ; Disable exit confirmation.
+
+;; Make the modeline font smaller
+
+(setq doom-modeline-height 1)
+(set-face-attribute 'mode-line nil :height 130)
+(set-face-attribute 'mode-line-inactive nil :height 130)
+
 ;;;;;;;;;;;;;;;;;;;;;;;     Fonts and Writing set-up   ;;;;;;;;;;;;;;;;;
 
 ;; Set fonts
@@ -33,9 +47,6 @@
 
 ;; word count in modeline
 (setq doom-modeline-enable-word-count t)
-
-;; Disable company in org-mode
-(setq company-global-modes '(not org-mode markdown-mode))
 
 ;; Markdown config
 (use-package markdown-mode
@@ -52,6 +63,8 @@
   :config
   ;; omitted a bunch of defun's
   )
+;; Disable company in Org_mode and markdown-mode
+(setq company-global-modes '(not org-mode markdown-mode))
 
 ;; configur writeroom-mode
 (use-package writeroom-mode
@@ -59,7 +72,17 @@
   :config
   (setq writeroom-width .85))
 
+;; Quotes
 
+(setq org-hide-block-startup t)
+
+;;;;;;;;;;;;;;;;;;;;;;;     Set-up Org_mode   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; https://github.com/ruivieira/.doom.d/blob/main/config.el
+;; org-mode general configuration
+(use-package! org-modern)
+(after! org
+  (add-hook 'org-mode-hook #'org-modern-mode))
+  
 ;;;;;;;;;;;;;;;;;;;;;;;     Set-up Org_roam   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! org
@@ -89,3 +112,12 @@
  (setq org-cite-csl-styles-dir "~/Zotero/styles")  ;; link with zotero csl files
 
 ;;;;;;;;;;;;;;;;;;;;;;    Citation solution     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;; use oackages
+
+(use-package! focus)
+(use-package! dirvish)
+(use-package! format-all)
+(use-package! org-roam-bibtex)
