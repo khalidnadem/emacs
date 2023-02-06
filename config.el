@@ -72,9 +72,9 @@
   :config
   (setq writeroom-width .85))
 
-;; Quotes
-
+;; Hide Quotes and Hide Emphasis
 (setq org-hide-block-startup t)
+(setq org-hide-emphasis-markers t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;     Set-up Org_mode   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; https://github.com/ruivieira/.doom.d/blob/main/config.el
