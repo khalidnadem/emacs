@@ -20,7 +20,8 @@
 (setq calendar-longitude -0.11)
 
 (require 'theme-changer)
-(change-theme 'doom-acario-light 'doom-dracula)
+(change-theme 'doom-gruvbox-light 'doom-dracula)
+;;(change-theme 'doom-acario-light 'doom-gruvbox)
 
 ;; enable word-wrap (almost) everywhere
 (+global-word-wrap-mode +1)
@@ -73,15 +74,20 @@
   (setq writeroom-width .85))
 
 ;; Hide Quotes and Hide Emphasis
-(setq org-hide-block-startup t)
+;;(setq org-cycle-hide-block-startup t)
+(after! org
+  (setq org-hide-leading-stars nil
+        org-indent-mode-turns-on-hiding-stars nil))
+
 (setq org-hide-emphasis-markers t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;     Set-up Org_mode   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; https://github.com/ruivieira/.doom.d/blob/main/config.el
 ;; org-mode general configuration
-(use-package! org-modern)
-(after! org
-  (add-hook 'org-mode-hook #'org-modern-mode))
+;;(use-package! org-modern)
+;; (after! org
+;;  (add-hook 'org-mode-hook #'org-modern-mode))
   
 ;;;;;;;;;;;;;;;;;;;;;;;     Set-up Org_roam   ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -100,10 +106,29 @@
   :config
   (org-roam-setup))
 
-;; Org Agends
-(setq org-agenda-files '("~/Documents/b.work/emacs_notes/tasks/tasks_2023.org"
-                         "~/Documents/b.work/emacs_notes/tasks/birthdays.org"))
+;; Org-roam-ui configuration
+(use-package! websocket
+    :after org-roam)
 
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+;;;;;;;;;;;;;;;
+
+;; Org Agends
+;; (setq org-agenda-files '("~/Documents/b.work/emacs_notes/tasks/tasks_2023.org"
+;;                         "~/Documents/b.work/emacs_notes/tasks/birthdays.org"))
+(setq org-agenda-files '("~/Documents/b.work/emacs_notes/roam"))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;    Citation solution     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package! org-roam-bibtex
+  :after org-roam)
 ;; Bibliography configuration
 (after! citar
   (setq! citar-bibliography '("~/Documents/b.work/emacs_work/references/My Library.bib"))
@@ -111,11 +136,7 @@
   (setq! citar-notes-paths '("~/Documents/b.work/emacs_work/references/notes")))
  (setq org-cite-csl-styles-dir "~/Zotero/styles")  ;; link with zotero csl files
 
-;;;;;;;;;;;;;;;;;;;;;;    Citation solution     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;; use oackages
+;;;;;;;;;;;;;;;;;;;;;;; use packages
 
 (use-package! focus)
 (use-package! dirvish)

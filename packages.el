@@ -7,7 +7,11 @@
 (package! dirvish) ;; replace dirad
 (package! org-modern) ;; modern org mode
 (package! org-roam-bibtex) ;; work with org-roam
-
+(unpin! org-roam) ;; org-roam-ui
+(package! org-roam-ui)
+(package! vulpea)
+(package! org-super-agenda)
+(package! pdf-tools :built-in 'prefer)
 
 
 
